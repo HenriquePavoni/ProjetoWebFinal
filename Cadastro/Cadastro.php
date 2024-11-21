@@ -15,11 +15,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
 
-    $sql = "INSERT INTO user (nome, email, senha, telefone, data_nascimento, cep, rua, bairro, cidade, estado)
+    $sql = "INSERT INTO tb_usuario (nome, email, senha, telefone, data_nascimento, cep, rua, bairro, cidade, estado)
             VALUES ('$nome', '$email', '$senha_hash', '$telefone', '$data_nascimento', '$cep', '$rua', '$bairro', '$cidade', '$estado')";
 
     if ($conn->query($sql) === TRUE) {
         echo "<script>alert('Cadastro realizado com sucesso!');</script>";
+        header("Location: ../Login/Login.php");
     } else {
         echo "<script>alert('Erro: " . $conn->error . "');</script>";
     }
@@ -89,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <div class="container">
         <h2>Cadastro de Usuário</h2>
-        <form action="registro.php" method="POST">
+        <form action="Cadastro.php" method="POST">
             <div class="form-group">
                 <label for="nome">Nome:</label>
                 <input type="text" id="nome" name="nome" maxlength="255" required>
