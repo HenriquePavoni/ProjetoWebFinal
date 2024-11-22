@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="cardapio.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  <title>Cardápio - Fast Pizza</title>
+</head>
+
+<body>
+
+  <!-- NavBar -->
+  <div>
+    <nav class="navbar navbar-expand-lg" style="background-color: #ff7018;">
+      <div class="container-fluid text-white">
+        <a class="navbar-brand text-white" href="../Home/home.html">FastPizza</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link text-gray" aria-current="page" href="../Cardapio/cardapio.html">Cardapio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" aria-current="page" href="../Carrinho/carrinho.html">Carrinho</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" aria-current="page" href="../Metodo de Pagamento/pagamento.html">Metodo de
+                Pagamento</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link text-white" aria-current="page" href="../Login/Login.php">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <main>
+    <div class="menu">
+      <h1>Cardápio</h1>
+    </div>
+
+    <div class="bttns">
+      <a href="#entradas"><button class="bttnsStyle">ENTRADA</button></a>
+      <a href="#pizzasalgada"><button class="bttnsStyle">PIZZA TRADICIONAL</button></a>
+      <a href="#pizzadoce"><button class="bttnsStyle">PIZZA DOCE</button></a>
+      <a href="#bebidas"><button class="bttnsStyle">BEBIDAS</button></a>
+    </div>
+
+    <section class="cardapioSection">
+      <div>
+        <h2 id="pizzasalgada">Pizza Tradicional:</h2>
+      </div>
+
+      <hr>
+      <div class="cardapioTitle">
+        <h3>Pizza de Queijo - Grande</h3>
+        <h3 class="priceStyle">R$35,00</h3>
+      </div>
+      <div class="cardapioDetails">
+        <p><b>Ingredientes:</b> Queijo, tomate, orégano</p>
+        <img class="cardapioImg" src="assets/pizza-1.png" alt="pizza Queijo">
+        <a href="../Pagina de Produto/AdicionaisQueijo.html">
+          <img width="38px" src="assets/add-button.png" alt="">
+        </a>
+      </div>
+      <br>
+      <hr>
+
+      <div class="cardapioTitle">
+        <h3>Pizza de Frango com Catupiry - Grande</h3>
+        <h3 class="priceStyle">R$45,00</h3>
+      </div>
+      <div class="cardapioDetails">
+        <p><b>Ingredientes:</b> Frango, catupiry, milho</p> <!-- Não utilizar isso, somente para fins de visualização, a descrição completa já está contida no seu PHP--> 
+        <img class="cardapioImg" src="assets/pizza-2.png" alt="pizza frango">
+        <a href="../Pagina de Produto/AdicionaisFrangoCatupiry.html">
+          <img width="38px" src="assets/add-button.png" alt="">
+        </a>
+      </div>
+      <br>
+      <hr>
+
+      <div class="cardapioTitle">
+        <h3>Pizza Marguerita - Grande</h3>
+        <h3 class="priceStyle">R$50,00</h3>
+      </div>
+      <div class="cardapioDetails">
+        <p><b>Ingredientes:</b> Mussarela, manjericão, tomate</p> <!-- Não utilizar isso, somente para fins de visualização, a descrição completa já está contida no seu PHP--> 
+        <img class="cardapioImg" src="assets/pizza-3.png" alt="pizza marguerita">
+        <a href="../Pagina de Produto/AdicionaisMarguerita.html">
+          <img width="38px" src="assets/add-button.png" alt="">
+        </a>
+      </div>
+      <br>
+      <hr>
+    </section>
+
+    <section class="cardapioSection">
+        <div>
+          <h2 id="pizzadoce">Pizza Doce:</h2>
+        </div>
+  
+        <hr>
+        <div class="cardapioTitle">
+          <h3>Pizza de Nutella - Grande</h3>
+          <h3 class="priceStyle">R$35,00</h3>
+        </div>
+        <div class="cardapioDetails">
+          <p><b>Ingredientes:</b> Nutella original, borda crocante</p> <!-- Não utilizar isso, somente para fins de visualização, a descrição completa já está contida no seu PHP--> 
+          <img class="cardapioImg" src="assets/pizza-nutella.png" alt="Pizza Nutella">
+          <a href="../Pagina de Produto/AdicionaisQueijo.html"> <!-- arrumar página de detalhes--> 
+            <img width="38px" src="assets/add-button.png" alt="">
+          </a>
+        </div>
+        <br>
+        <hr>
+  
+        <div class="cardapioTitle">
+          <h3>Pizza M&M's - Grande</h3>
+          <h3 class="priceStyle">R$45,00</h3>
+        </div>
+        <div class="cardapioDetails">
+          <p><b>Ingredientes:</b> M&M's e muito chocolate amargo</p> <!-- Não utilizar isso, somente para fins de visualização, a descrição completa já está contida no seu PHP--> 
+          <img class="cardapioImg" src="assets/pizza-mem.png" alt="Pizza Mem">
+          <a href="../Pagina de Produto/AdicionaisFrangoCatupiry.html"> <!-- arrumar página de detalhes--> 
+            <img width="38px" src="assets/add-button.png" alt="">
+          </a>
+        </div>
+        <br>
+        <hr>
+
+      </section>
+
+      <section class="cardapioSection">
+        <div>
+          <h2 id="bebidas">Bebidas:</h2>
+        </div>
+  
+        <hr>
+        <div class="cardapioTitle">
+          <h3>Cola Cola - Lata</h3>
+          <h3 class="priceStyle">R$9,00</h3>
+        </div>
+        <div class="cardapioDetails">
+          <p><b>Ingredientes:</b> Extremamente refrescante, beba já!</p> <!-- Não utilizar isso, somente para fins de visualização, a descrição completa já está contida no seu PHP--> 
+          <img class="cardapioImg" src="assets/coca.png" alt="Coca Cola">
+          <a href="../Pagina de Produto/AdicionaisQueijo.html"> <!-- arrumar página de detalhes--> 
+            <img width="38px" src="assets/add-button.png" alt="">
+          </a>
+        </div>
+        <br>
+        <hr>
+  
+        <div class="cardapioTitle">
+          <h3>Água sem gás</h3>
+          <h3 class="priceStyle">R$4,00</h3>
+        </div>
+        <div class="cardapioDetails">
+          <p><b>Ingredientes:</b> Existe bebida melhor que água?!</p> <!-- Não utilizar isso, somente para fins de visualização, a descrição completa já está contida no seu PHP--> 
+          <img class="cardapioImg" src="assets/agua.png" alt="água sem gás"> 
+          <a href="../Pagina de Produto/AdicionaisFrangoCatupiry.html"> <!-- arrumar página de detalhes--> 
+            <img width="38px" src="assets/add-button.png" alt="">
+          </a>
+        </div>
+        <br>
+        <hr>
+
+      </section>
+
+      <section class="cardapioSection">
+        <div>
+          <h2 id="entradas">Entradas:</h2>
+        </div>
+  
+        <hr>
+        <div class="cardapioTitle">
+          <h3>Crostini</h3>
+          <h3 class="priceStyle">R$19,00</h3>
+        </div>
+        <div class="cardapioDetails">
+          <p><b>Ingredientes:</b> Massa crocante, delicioso para começar</p> <!-- Não utilizar isso, somente para fins de visualização, a descrição completa já está contida no seu PHP--> 
+          <img class="cardapioImg" src="assets/crostini.png" alt="crostini">
+          <a href="../Pagina de Produto/AdicionaisQueijo.html"> <!-- arrumar página de detalhes--> 
+            <img width="38px" src="assets/add-button.png" alt="">
+          </a>
+        </div>
+        <br>
+        <hr>
+
+      </section>
+    
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
