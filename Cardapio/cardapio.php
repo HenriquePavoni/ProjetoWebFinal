@@ -92,25 +92,37 @@ if ($result->num_rows > 0) {
 
       if ($result->num_rows > 0) {
         $itens = $result->fetch_all(MYSQLI_ASSOC);
+
         echo '<hr>';
         echo '<div class="pizzaTitle">';
-        echo '<h3>' . $itens[0]['nome'] . ' - Grande</h3>';  
-        echo '<h3 class="priceStyle">R$' . $itens[0]['preco'] . '</h3>';  
+        echo '<h3>' . $itens[7]['nome'] . ' - Grande</h3>';
+        echo '<h3 class="priceStyle">R$' . $itens[7]['preco'] . '</h3>';
         echo '</div>';
         echo '<div class="pizzaDetails">';
-        echo '<p><b>Ingredientes:</b> ' . $itens[0]['descricao'] . '</p>';  
-        echo '<img class="pizzaImg" src="assets/pizza-1.png" alt="">'; 
-        echo '<a href="../Pagina de Produto/AdicionaisQueijo.html"><img width="38px" src="assets/add-button.png" alt=""></a>';
+        echo '<p><b>Ingredientes:</b> ' . $itens[7]['descricao'] . '</p>';
+        echo '<img class="pizzaImg" src="assets/crostini.png" alt="">';
+        echo '<a href="../Pagina de Produto/AdicionaisCrostini.html"><img width="38px" src="assets/add-button.png" alt=""></a>';
         echo '</div><br>';
         echo '<hr>';
         
         echo '<div class="pizzaTitle">';
-        echo '<h3>' . $itens[1]['nome'] . ' - Grande</h3>'; 
-        echo '<h3 class="priceStyle">R$' . $itens[1]['preco'] . '</h3>'; 
+        echo '<h3>' . $itens[0]['nome'] . ' - Grande</h3>';
+        echo '<h3 class="priceStyle">R$' . $itens[0]['preco'] . '</h3>';
         echo '</div>';
         echo '<div class="pizzaDetails">';
-        echo '<p><b>Ingredientes:</b> ' . $itens[1]['descricao'] . '</p>';  
-        echo '<img class="pizzaImg" src="assets/pizza-2.png" alt="">';  
+        echo '<p><b>Ingredientes:</b> ' . $itens[0]['descricao'] . '</p>';
+        echo '<img class="pizzaImg" src="assets/pizza-1.png" alt="">';
+        echo '<a href="../Pagina de Produto/AdicionaisQueijo.html"><img width="38px" src="assets/add-button.png" alt=""></a>';
+        echo '</div><br>';
+        echo '<hr>';
+
+        echo '<div class="pizzaTitle">';
+        echo '<h3>' . $itens[1]['nome'] . ' - Grande</h3>';
+        echo '<h3 class="priceStyle">R$' . $itens[1]['preco'] . '</h3>';
+        echo '</div>';
+        echo '<div class="pizzaDetails">';
+        echo '<p><b>Ingredientes:</b> ' . $itens[1]['descricao'] . '</p>';
+        echo '<img class="pizzaImg" src="assets/pizza-2.png" alt="">';
         echo '<a href="../Pagina de Produto/AdicionaisFrangoCatupiry.html"><img width="38px" src="assets/add-button.png" alt=""></a>';
         echo '</div><br>';
         echo '<hr>';
@@ -125,10 +137,55 @@ if ($result->num_rows > 0) {
         echo '<a href="../Pagina de Produto/AdicionaisMarguerita.html"><img width="38px" src="assets/add-button.png" alt=""></a>';
         echo '</div><br>';
         echo '<hr>';
+
+        echo '<div class="pizzaTitle">';
+        echo '<h3>' . $itens[3]['nome'] . ' - Grande</h3>';
+        echo '<h3 class="priceStyle">R$' . $itens[3]['preco'] . '</h3>';
+        echo '</div>';
+        echo '<div class="pizzaDetails">';
+        echo '<p><b>Ingredientes:</b> ' . $itens[3]['descricao'] . '</p>';
+        echo '<img class="pizzaImg" src="assets/pizza-nutella.png" alt="">';
+        echo '<a href="../Pagina de Produto/AdicionaisNutella.html"><img width="38px" src="assets/add-button.png" alt=""></a>';
+        echo '</div><br>';
+        echo '<hr>';
+
+        echo '<div class="pizzaTitle">';
+        echo '<h3>' . $itens[4]['nome'] . ' - Grande</h3>';
+        echo '<h3 class="priceStyle">R$' . $itens[4]['preco'] . '</h3>';
+        echo '</div>';
+        echo '<div class="pizzaDetails">';
+        echo '<p><b>Ingredientes:</b> ' . $itens[4]['descricao'] . '</p>';
+        echo '<img class="pizzaImg" src="assets/pizza-mem.png" alt="">';
+        echo '<a href="../Pagina de Produto/AdicionaisMeM.html"><img width="38px" src="assets/add-button.png" alt=""></a>';
+        echo '</div><br>';
+        echo '<hr>';
+
+        echo '<div class="pizzaTitle">';
+        echo '<h3>' . $itens[5]['nome'] . ' - Grande</h3>';
+        echo '<h3 class="priceStyle">R$' . $itens[5]['preco'] . '</h3>';
+        echo '</div>';
+        echo '<div class="pizzaDetails">';
+        echo '<p><b>Ingredientes:</b> ' . $itens[5]['descricao'] . '</p>';
+        echo '<img class="pizzaImg" src="assets/coca.png" alt="">';
+        echo '<a href="../Pagina de Produto/AdicionaisCoca.html"><img width="38px" src="assets/add-button.png" alt=""></a>';
+        echo '</div><br>';
+        echo '<hr>';
+
+        echo '<div class="pizzaTitle">';
+        echo '<h3>' . $itens[6]['nome'] . ' - Grande</h3>';
+        echo '<h3 class="priceStyle">R$' . $itens[6]['preco'] . '</h3>';
+        echo '</div>';
+        echo '<div class="pizzaDetails">';
+        echo '<p><b>Ingredientes:</b> ' . $itens[6]['descricao'] . '</p>';
+        echo '<img class="pizzaImg" src="assets/agua.png" alt="">';
+        echo '<a href="../Pagina de Produto/AdicionaisAgua.html"><img width="38px" src="assets/add-button.png" alt=""></a>';
+        echo '</div><br>';
+        echo '<hr>';
+
       } else {
         echo "Nenhum item encontrado.";
       }
-      
+
       ?>
 
     </section>
