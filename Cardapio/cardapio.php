@@ -9,14 +9,14 @@ if (!$conn) {
 $sql = "SELECT nome, preco, descricao, foto FROM tb_itens";
 $result = $conn->query($sql);
 $detailList = [
-  "AdicionaisCrostini.html",
-  "AdicionaisQueijo.html",
-  "AdicionaisFrangoCatupiry.html",
-  "AdicionaisMarguerita.html",
-  "AdicionaisNutella.html",
-  "AdicionaisMeM.html",
-  "AdicionaisCoca.html",
-  "AdicionaisAgua.html",
+  "AdicionaisCrostini.php",
+  "AdicionaisQueijo.php",
+  "AdicionaisFrangoCatupiry.php",
+  "AdicionaisMarguerita.php",
+  "AdicionaisNutella.php",
+  "AdicionaisMeM.php",
+  "AdicionaisCoca.php",
+  "AdicionaisAgua.php",
 ];
 
 if ($result->num_rows > 0) {
@@ -44,7 +44,6 @@ if ($result->num_rows > 0) {
 </head>
 
 <body>
-  <!-- NavBar -->
   <div>
     <nav class="navbar navbar-expand-lg" style="background-color: #ff7018;">
       <div class="container-fluid text-white">
@@ -59,7 +58,7 @@ if ($result->num_rows > 0) {
               <a class="nav-link text-gray" aria-current="page" href="../Cardapio/cardapio.php">Cardapio</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-white" aria-current="page" href="../Carrinho/carrinho.html">Carrinho</a>
+              <a class="nav-link text-white" aria-current="page" href="../Carrinho/carrinho.php">Carrinho</a>
             </li>
             <li class="nav-item">
               <a class="nav-link text-white" aria-current="page" href="../Metodo de Pagamento/pagamento.html">Metodo de

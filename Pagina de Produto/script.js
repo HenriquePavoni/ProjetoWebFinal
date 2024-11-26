@@ -38,7 +38,6 @@ function createCounterContainer(name, price) {
     counterContainer.appendChild(counter);
     counterContainer.appendChild(counterTitle);
 
-    // Adicionar os event listeners para os botões de incremento e decremento
     decrementButton.addEventListener('click', () => {
         if (parseInt(countSpan.textContent) > 0) {
             countSpan.textContent = parseInt(countSpan.textContent) - 1;
@@ -56,7 +55,6 @@ function createCounterContainer(name, price) {
     return counterContainer;
 }
 
-// Limpar o conteúdo existente antes de adicionar os novos elementos
 const card1 = document.querySelector('.card1');
 card1.innerHTML = '';
 
@@ -85,23 +83,17 @@ cardNames.forEach((name, index) => {
     card1.appendChild(counterContainer);
 });
 
-// Adicionar o elemento inicial para exibir o total
 const totalElement = document.createElement('div');
 totalElement.classList.add('total');
 totalElement.innerHTML = `<span style="color: black;">Total:</span> <span style="color: red;">R$ 0.00</span>`;
 card1.appendChild(totalElement);
 
-// Adicionar o botão "Adicionar ao Carrinho" abaixo do total
 const addToCartButton = document.createElement('button');
 addToCartButton.classList.add('add-to-cart-button');
 addToCartButton.textContent = 'Adicionar ao Carrinho';
 
-// Adicionando o evento de clique ao botão
 addToCartButton.addEventListener('click', () => {
-    // Aqui você pode adicionar a lógica para adicionar os itens ao carrinho
-    // Por exemplo:
     alert('Produto adicionado ao carrinho!');
 });
 
-// Adicionar o botão ao final da seção do carrinho
 card1.appendChild(addToCartButton);

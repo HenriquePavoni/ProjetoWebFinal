@@ -1,0 +1,183 @@
+body {
+    font-family: 'Lexend', sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+h2, h3, h4 {
+    margin: 0;
+    padding: 0;
+}
+
+h3 {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+a {
+    text-decoration: none;
+}
+
+.cart-header {
+    display: flex;
+    align-items: center;
+    background-color: #ff7018;
+    padding: 10px 20px;
+    color: white;
+}
+
+.cart-header img {
+    margin-right: 15px;
+}
+
+.cart-header h2 {
+    font-size: 1.75rem;
+}
+
+.cart {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cart-items {
+    margin-bottom: 30px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.cart-item h3 {
+    font-size: 1.1rem;
+    color: #333;
+    width: 45%;
+}
+
+.counter {
+    display: flex;
+    align-items: center;
+}
+
+.counter button {
+    padding: 5px 10px;
+    background-color: #ff7018;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    margin: 0 5px;
+    border-radius: 5px;
+}
+
+.counter button:hover {
+    background-color: #e86016;
+}
+
+.quantity {
+    font-size: 1rem;
+    margin: 0 10px;
+}
+
+.item-price {
+    text-align: right;
+    width: 30%;
+}
+
+.item-price h3 {
+    font-size: 1.2rem;
+    color: #ff7018;
+}
+
+.item-price h4 {
+    font-size: 1.1rem;
+    color: #666;
+}
+
+.cart-item img {
+    max-width: 60px;
+    border-radius: 5px;
+}
+
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-top: 10px;
+}
+
+.cart-total h3 {
+    font-size: 1.3rem;
+    color: #333;
+}
+
+.cart-total h3#total-produtos,
+.cart-total h3#total-compra {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ff7018;
+}
+
+.calculate-frete {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.calculate-frete input {
+    width: 60%;
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+}
+
+.calculate-frete button {
+    width: 30%;
+    padding: 10px;
+    background-color: #ff7018;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 5px;
+}
+
+.calculate-frete button:hover {
+    background-color: #e86016;
+}
+
+.calculate-frete1 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.calculate-frete1 button {
+    padding: 12px 20px;
+    background-color: #ff7018;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    width: 60%;
+}
+
+.calculate-frete1 button:hover {
+    background-color: #e86016;
+}

@@ -20,7 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($conn->query($sql) === TRUE) {
         echo "<script>alert('Cadastro realizado com sucesso!');</script>";
-        header("Location: ../Login/Login.php");
+        header("Location: ../Login/login.php");
+        exit();
     } else {
         echo "<script>alert('Erro: " . $conn->error . "');</script>";
     }
@@ -29,6 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -45,6 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             align-items: center;
             height: 100vh;
         }
+
         .container {
             background-color: white;
             padding: 20px;
@@ -52,18 +55,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             width: 400px;
         }
+
         h2 {
             text-align: center;
             margin-bottom: 20px;
         }
+
         .form-group {
             margin-bottom: 15px;
         }
+
         .form-group label {
             display: block;
             font-weight: bold;
         }
-        .form-group input, .form-group select {
+
+        .form-group input,
+        .form-group select {
             width: 100%;
             padding: 8px;
             margin-top: 5px;
@@ -71,6 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             border-radius: 4px;
             box-sizing: border-box;
         }
+
         .form-group input[type="submit"] {
             background-color: #4CAF50;
             color: white;
@@ -78,14 +87,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             cursor: pointer;
             font-size: 16px;
         }
+
         .form-group input[type="submit"]:hover {
             background-color: #45a049;
         }
+
         .form-group input[type="submit"]:focus {
             outline: none;
         }
     </style>
 </head>
+
 <body>
 
     <div class="container">
@@ -168,4 +180,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
 
 </body>
+
 </html>

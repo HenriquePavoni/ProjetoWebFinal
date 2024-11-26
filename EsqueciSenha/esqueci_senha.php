@@ -1,45 +1,54 @@
 <?php
-require __DIR__ . '/../db.php';
 
 session_start();
+
+require __DIR__ . '/../db.php';
 
 $mensagem = '';
 $erro = '';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['etapa']) && $_POST['etapa'] === 'verificar') {
-    $email = $_POST['email'];
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (isset($_POST['email']) && isset($_POST['data_nascimento']) && !isset($_SESSION['usuario_verificado'])) {
+        $email = $_POST['email'];
+        $data_nascimento = $_POST['data_nascimento'];
 
-    if ($conn) {
-        $stmt = $conn->prepare("SELECT id FROM tb_usuario WHERE email = ?");
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
-        $result = $stmt->get_result();
+        if ($conn) {
+            $stmt = $conn->prepare("SELECT id, nome, data_nascimento FROM tb_usuario WHERE email = ?");
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+            $result = $stmt->get_result();
 
-        if ($result->num_rows > 0) {
-            $_SESSION['email_verificado'] = $email;
-            $mensagem = "E-mail validado! Agora você pode redefinir sua senha.";
+            if ($result->num_rows > 0) {
+                $user = $result->fetch_assoc();
+
+                if ($user['data_nascimento'] == $data_nascimento) {
+                    $_SESSION['usuario_verificado'] = true;
+                    $_SESSION['email'] = $email;
+                    $mensagem = "Informações válidas. Agora você pode redefinir sua senha.";
+                } else {
+                    $erro = "Data de nascimento incorreta.";
+                }
+            } else {
+                $erro = "E-mail não encontrado.";
+            }
+          
         } else {
             $erro = "E-mail não encontrado.";
         }
-    } else {
-        $erro = "Erro na conexão com o banco de dados.";
     }
-}
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['etapa']) && $_POST['etapa'] === 'alterar') {
-    if (isset($_SESSION['email_verificado'])) {
+    if (isset($_POST['nova_senha']) && isset($_SESSION['usuario_verificado']) && $_SESSION['usuario_verificado'] === true) {
         $nova_senha = $_POST['nova_senha'];
-        $email = $_SESSION['email_verificado'];
+        $email = $_SESSION['email'];
 
-        $nova_senha_hash = password_hash($nova_senha, PASSWORD_DEFAULT);
-
-        if ($conn) {
+        if (strlen($nova_senha) >= 6) {
             $stmt = $conn->prepare("UPDATE tb_usuario SET senha = ? WHERE email = ?");
+            $nova_senha_hash = password_hash($nova_senha, PASSWORD_DEFAULT);
             $stmt->bind_param("ss", $nova_senha_hash, $email);
-
             if ($stmt->execute()) {
-                $mensagem = "Senha alterada com sucesso!";
+                session_unset();
                 session_destroy();
+                $mensagem = "Senha atualizada com sucesso! Agora você pode <a href='../Login/login.php'>fazer login</a>.";
             } else {
                 $erro = "Erro ao alterar a senha.";
             }
@@ -63,8 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['etapa']) && $_POST['e
     <style>
         body {
             background-image: url('Imagem\ de\ Fundo\ Página\ de\ Cadastro.jpg');
-            background-size: cover;
-            font-family: "Lexend", sans-serif;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             display: flex;
@@ -172,26 +180,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['etapa']) && $_POST['e
         <div class="reset-header">
             <h2>Redefinir Senha</h2>
         </div>
+      
+        <?php if (!isset($_SESSION['usuario_verificado'])): ?>
+        <form action="esqueci_senha.php" method="POST">
+            <div class="form-group">
+                <label for="email">Digite seu e-mail</label>
+                <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
+            </div>
+            <div class="form-group">
+                <label for="data_nascimento">Data de Nascimento</label>
+                <input type="date" id="data_nascimento" name="data_nascimento" required>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit">Verificar</button>
+            </div>
+        </form>
+        <?php endif; ?>
+
+        <?php if (isset($_SESSION['usuario_verificado'])): ?>
+        <form action="esqueci_senha.php" method="POST">
+            <div class="form-group">
+                <label for="nova_senha">Nova Senha</label>
+                <input type="password" id="nova_senha" name="nova_senha" placeholder="Digite sua nova senha" required>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit">Redefinir Senha</button>
+            </div>
+        </form>
+        <?php endif; ?>
+
 
         <?php if ($mensagem): ?>
-            <p class="success-message"><?php echo $mensagem; ?></p>
-        <?php endif; ?>
-
-        <?php if ($erro): ?>
-            <p class="error-message"><?php echo $erro; ?></p>
-        <?php endif; ?>
-
-        <?php if (empty($mensagem) || !isset($_SESSION['email_verificado'])): ?>
-            <form action="esqueci_senha.php" method="POST">
-                <input type="hidden" name="etapa" value="verificar">
-                <div class="form-group">
-                    <label for="email">E-mail</label>
-                    <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
-                </div>
-                <div class="form-actions">
-                    <button type="submit">Validar E-mail</button>
-                </div>
-            </form>
+            <div class="message"><?php echo $mensagem; ?></div>
         <?php endif; ?>
 
         <?php if (!empty($mensagem) && isset($_SESSION['email_verificado'])): ?>
