@@ -182,7 +182,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <div class="form-footer">
             <p>Não tem uma conta? <a href="../Cadastro/Cadastro.php">Cadastre-se</a></p>
-            <p><a href="esqueci_senha.php">Esqueceu a senha?</a></p>
+            <p><a href="../EsqueciSenha/esqueci_senha.php">Esqueceu a senha?</a></p>
         </div>
     </div>
 </body>

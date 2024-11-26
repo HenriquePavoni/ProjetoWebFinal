@@ -1,7 +1,7 @@
 <?php
-require 'db.php';
-
 session_start();
+
+require __DIR__ . '/../db.php';
 
 $mensagem = '';
 $erro = '';
@@ -10,13 +10,12 @@ $email = '';
 $data_nascimento = '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-    if (isset($_POST['email']) && isset($_POST['data_nascimento'])) {
+    if (isset($_POST['email']) && isset($_POST['data_nascimento']) && !isset($_SESSION['usuario_verificado'])) {
         $email = $_POST['email'];
         $data_nascimento = $_POST['data_nascimento'];
 
         if ($conn) {
-            $stmt = $conn->prepare("SELECT id, nome, data_nascimento FROM user WHERE email = ?");
+            $stmt = $conn->prepare("SELECT id, nome, data_nascimento FROM tb_usuario WHERE email = ?");
             $stmt->bind_param("s", $email);
             $stmt->execute();
             $result = $stmt->get_result();
@@ -25,7 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $user = $result->fetch_assoc();
 
                 if ($user['data_nascimento'] == $data_nascimento) {
-                    $_SESSION['user_id'] = $user['id'];
+                    $_SESSION['usuario_verificado'] = true;
+                    $_SESSION['email'] = $email;
                     $mensagem = "Informações válidas. Agora você pode redefinir sua senha.";
                 } else {
                     $erro = "Data de nascimento incorreta.";
@@ -36,17 +36,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         } else {
             $erro = "Falha na conexão com o banco de dados!";
         }
-    } elseif (isset($_POST['nova_senha']) && isset($_SESSION['user_id'])) {
+    }
+
+    if (isset($_POST['nova_senha']) && isset($_SESSION['usuario_verificado']) && $_SESSION['usuario_verificado'] === true) {
         $nova_senha = $_POST['nova_senha'];
-        $user_id = $_SESSION['user_id'];
+        $email = $_SESSION['email'];
 
         if (strlen($nova_senha) >= 6) {
+            $stmt = $conn->prepare("UPDATE tb_usuario SET senha = ? WHERE email = ?");
             $nova_senha_hash = password_hash($nova_senha, PASSWORD_DEFAULT);
-            $stmt = $conn->prepare("UPDATE user SET senha = ? WHERE id = ?");
-            $stmt->bind_param("si", $nova_senha_hash, $user_id);
+            $stmt->bind_param("ss", $nova_senha_hash, $email);
             if ($stmt->execute()) {
-                $mensagem = "Senha atualizada com sucesso! Agora você pode <a href='login.php'>fazer login</a>.";
-                unset($_SESSION['user_id']);
+                session_unset();
+                session_destroy();
+                $mensagem = "Senha atualizada com sucesso! Agora você pode <a href='../Login/login.php'>fazer login</a>.";
             } else {
                 $erro = "Erro ao atualizar a senha. Tente novamente mais tarde.";
             }
@@ -66,10 +69,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <style>
         body {
+            background-image: url('Imagem\ de\ Fundo\ Página\ de\ Cadastro.jpg');
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background: #f5f5f5;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -175,7 +178,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <h2>Esqueci a Senha</h2>
         </div>
 
-        <?php if (empty($_SESSION['user_id'])): ?>
+        <?php if (!isset($_SESSION['usuario_verificado'])): ?>
         <form action="esqueci_senha.php" method="POST">
             <div class="form-group">
                 <label for="email">Digite seu e-mail</label>
@@ -192,7 +195,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </form>
         <?php endif; ?>
 
-        <?php if (!empty($_SESSION['user_id'])): ?>
+        <?php if (isset($_SESSION['usuario_verificado'])): ?>
         <form action="esqueci_senha.php" method="POST">
             <div class="form-group">
                 <label for="nova_senha">Nova Senha</label>
@@ -204,6 +207,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
         </form>
         <?php endif; ?>
+
 
         <?php if ($mensagem): ?>
             <div class="message"><?php echo $mensagem; ?></div>
