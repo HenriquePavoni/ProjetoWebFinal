@@ -102,7 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <div class="container">
         <h2>Cadastro de Usuário</h2>
-        <form action="cadastro.php" method="POST">
+        <form action="Cadastro.php" method="POST">
             <div class="form-group">
                 <label for="nome">Nome:</label>
                 <input type="text" id="nome" name="nome" maxlength="255" required>

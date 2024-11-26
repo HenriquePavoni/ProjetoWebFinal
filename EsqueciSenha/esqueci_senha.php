@@ -1,13 +1,11 @@
 <?php
+
 session_start();
 
 require __DIR__ . '/../db.php';
 
 $mensagem = '';
 $erro = '';
-$nova_senha = '';
-$email = '';
-$data_nascimento = '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['email']) && isset($_POST['data_nascimento']) && !isset($_SESSION['usuario_verificado'])) {
@@ -33,8 +31,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             } else {
                 $erro = "E-mail não encontrado.";
             }
+          
         } else {
-            $erro = "Falha na conexão com o banco de dados!";
+            $erro = "E-mail não encontrado.";
         }
     }
 
@@ -51,22 +50,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 session_destroy();
                 $mensagem = "Senha atualizada com sucesso! Agora você pode <a href='../Login/login.php'>fazer login</a>.";
             } else {
-                $erro = "Erro ao atualizar a senha. Tente novamente mais tarde.";
+                $erro = "Erro ao alterar a senha.";
             }
         } else {
-            $erro = "A nova senha deve ter no mínimo 6 caracteres.";
+            $erro = "Erro na conexão com o banco de dados.";
         }
+
+    } else {
+        $erro = "Sessão expirada. Por favor, valide o e-mail novamente.";
     }
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Esqueci a Senha</title>
-
+    <title>Redefinir Senha</title>
     <style>
         body {
             background-image: url('Imagem\ de\ Fundo\ Página\ de\ Cadastro.jpg');
@@ -157,27 +159,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             background: #0056b3;
         }
 
-        .message {
+        .error-message {
+            color: red;
+            font-size: 14px;
             text-align: center;
-            font-size: 16px;
-            color: green;
             margin-top: 10px;
         }
 
-        .error-message {
+        .success-message {
+            color: green;
+            font-size: 14px;
             text-align: center;
-            font-size: 16px;
-            color: red;
             margin-top: 10px;
         }
     </style>
 </head>
+
 <body>
     <div class="reset-container">
         <div class="reset-header">
-            <h2>Esqueci a Senha</h2>
+            <h2>Redefinir Senha</h2>
         </div>
-
+      
         <?php if (!isset($_SESSION['usuario_verificado'])): ?>
         <form action="esqueci_senha.php" method="POST">
             <div class="form-group">
@@ -213,9 +216,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="message"><?php echo $mensagem; ?></div>
         <?php endif; ?>
 
-        <?php if ($erro): ?>
-            <div class="error-message"><?php echo $erro; ?></div>
+        <?php if (!empty($mensagem) && isset($_SESSION['email_verificado'])): ?>
+            <form action="esqueci_senha.php" method="POST">
+                <input type="hidden" name="etapa" value="alterar">
+                <div class="form-group">
+                    <label for="nova_senha">Nova Senha</label>
+                    <input type="password" id="nova_senha" name="nova_senha" placeholder="Digite sua nova senha" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit">Alterar Senha</button>
+                </div>
+            </form>
         <?php endif; ?>
     </div>
 </body>
+
 </html>
